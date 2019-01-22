@@ -498,12 +498,15 @@ async function getcontext(channelConfig, clientIdx, txModeFile) {
     let data = fs.readFileSync(commUtils.resolvePath(caRootsPath));
     let caroots = Buffer.from(data).toString();
 
+    let orderers = ['orderer0', 'orderer1', 'orderer2'];
+    const ordererKey = Math.floor(Math.random()*orderers.length);
+
     channel.addOrderer(
         client.newOrderer(
-            ORGS.orderer.url,
+            ORGS[ordererKey].url,
             {
                 'pem': caroots,
-                'ssl-target-name-override': ORGS.orderer['server-hostname']
+                'ssl-target-name-override': ORGS[ordererKey]['server-hostname']
             }
         )
     );
