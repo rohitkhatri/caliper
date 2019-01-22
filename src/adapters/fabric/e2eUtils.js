@@ -498,7 +498,7 @@ async function getcontext(channelConfig, clientIdx, txModeFile) {
     let data = fs.readFileSync(commUtils.resolvePath(caRootsPath));
     let caroots = Buffer.from(data).toString();
 
-    let orderers = ['orderer0', 'orderer1', 'orderer2'];
+    let orderers = channelConfig.orderers;
     const ordererKey = orderers[Math.floor(Math.random()*orderers.length)];
 
     channel.addOrderer(
