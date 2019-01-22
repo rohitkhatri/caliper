@@ -500,6 +500,9 @@ async function getcontext(channelConfig, clientIdx, txModeFile) {
 
     let orderers = ['orderer0', 'orderer1', 'orderer2'];
     const ordererKey = Math.floor(Math.random()*orderers.length);
+    console.log('Random orderer key:', ordererKey);
+    console.log('ORGS value:', ORGS);
+    console.log('Random orderer object:', ORGS[ordererKey]);
 
     channel.addOrderer(
         client.newOrderer(
