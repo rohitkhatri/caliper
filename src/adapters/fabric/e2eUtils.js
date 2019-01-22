@@ -703,11 +703,12 @@ async function sendTransaction(context, signedTransaction, invokeStatus, startTi
             let signedProposal = signedTransaction.signedTransaction;
             let broadcastResponsePromise;
             let transactionRequest = signedTransaction.transactionRequest;
+            console.log('******** Transaction Request Orderer ********', transactionRequest);
+            
             if (signedProposal === null){
                 if(txFile && txFile.readWrite === 'write') {
                     const beforeInvokeTime = Date.now();
                     let signedTransaction = signedOffline.generateSignedTransaction(transactionRequest, channel);
-                    console.log('******** Transaction Request Orderer ********', transactionRequest.orderer);
                     invokeStatus.Set('invokeLatency', (Date.now() - beforeInvokeTime));
                     signedTransactionArray.push({
                         txId: txId,
